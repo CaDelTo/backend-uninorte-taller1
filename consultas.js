@@ -1,20 +1,18 @@
 export function humanosVivos(personajes) { 
     return personajes.filter(
-        p => p.estado == "Alive" && p.especie == "Human"
+        p => p.estado === "Alive" && p.especie === "Human"
     );
 }
 
 export function personajesEpisodios(personajes) { 
-    return (
-        p => p.filter(
-            p => p.episodios.length >= 20
-        )
+    return personajes.filter(
+        p => p.cantidadEpisodios >= 20
     );
 }
 
 export function primerAlienF(personajes) {
     return personajes.find(
-        p => p.especie == "Alien" && p.genero == "Female"
+        p => p.especie === "Alien" && p.genero === "Female"
     );
 }
 
@@ -26,18 +24,18 @@ export function personajesTypeBooleano(personajes) {
 
 export function personajesImgEpi(personajes) {
     return personajes.every(
-        p => p.image.trim() !== "" && p.episodios.length >=1
+        p => p.imagen.trim() !== "" && p.cantidadEpisodios >=1
     );
 }
 
 export function especies(personajes) {
     const a = personajes.reduce((gru, p) => {
-        if (![gru.especie]) {
+        if (!gru[p.especie]) {
             gru[p.especie] = {cantidad: 0, sumaEpisodios: 0, vivos:0};
         }
         gru[p.especie].cantidad++;
-        gru[p.especie].sumaEpisodios += p.episodios.length;
-        if (p.estado == "Alive") {
+        gru[p.especie].sumaEpisodios += p.cantidadEpisodios;
+        if (p.estado === "Alive") {
             gru[p.especie].vivos++;
         }
         return gru;
@@ -56,9 +54,9 @@ export function especies(personajes) {
 export function personajesEpsRango(personajes) { 
     return personajes.reduce((rangos, p) => {
         const eps = p.cantidadEpisodios;
-        if (n <= 5) rangos["1-5"] += 1;
-        else if (n <= 15) rangos["6-15"] += 1;
-        else if (n <= 30) rangos["16-30"] += 1;
+        if (eps <= 5) rangos["1-5"] += 1;
+        else if (eps <= 15) rangos["6-15"] += 1;
+        else if (eps <= 30) rangos["16-30"] += 1;
         else rangos["30+"] += 1;
         return rangos;
     }, 
@@ -67,3 +65,4 @@ export function personajesEpsRango(personajes) {
 
     );
 }
+
