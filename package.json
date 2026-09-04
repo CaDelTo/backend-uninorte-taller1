@@ -1,0 +1,11 @@
+{
+  "name": "backend-uninorte-taller1",
+  "version": "1.0.0",
+  "description": "Taller 1 - JavaScript: Promesas, APIs y Manipulacion de Datos",
+  "type": "module",
+  "scripts": {
+    "parte-a": "node Taller01_ParteA.js",
+    "parte-c": "node Taller01_ParteC.js"
+  },
+  "license": "MIT"
+}
